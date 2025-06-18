@@ -1,0 +1,22 @@
+{
+  "name": "game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/readline-sync": "^1.4.8",
+    "jest": "^30.0.0",
+    "ts-jest": "^29.4.0"
+  },
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
+}
