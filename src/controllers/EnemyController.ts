@@ -1,7 +1,10 @@
 import { Enemy } from "../models/Enemy";
+import { Boss } from "../models/Boss";
 import { EnemyFactory } from "../factories/EnemyFactory";
+import { BossFactory } from "../factories/BossFactory";
 import { EnemyData } from "../interfaces/EnemyData";
 import enemyDatabase from "../data/enemies.json";
+import { InvalidEnemiesLength } from "../errors/InvalidEnemiesLength";
 
 export class EnemyController {
   private enemyTemplates: EnemyData[];
@@ -10,34 +13,53 @@ export class EnemyController {
     this.enemyTemplates = enemyDatabase;
   }
 
-  /**
-   * Cria uma lista de inimigos aleatórios.
-   * @param count O número de inimigos a serem criados.
-   * @returns Um array de instâncias da classe Enemy.
-   */
   public createRandomEnemies(count: number): Enemy[] {
     const enemies: Enemy[] = [];
-    for (let i = 0; i < count; i++) {
-      const randomIndex = Math.floor(
-        Math.random() * this.enemyTemplates.length
+    if (count < 1) {
+      throw new InvalidEnemiesLength(
+        "should throw InvalidEnemiesLength if enemies array is empty"
       );
-      const randomEnemyData = this.enemyTemplates[randomIndex];
+    }
+    for (let i = 0; i < count; i++) {
+      const enemys = this.enemyTemplates.filter((e) => !e.isBoss);
+
+      if (enemys.length === 0) {
+        throw new InvalidEnemiesLength("No valid enemy templates available.");
+      }
+
+      const randomIndex = Math.floor(Math.random() * enemys.length);
+      const randomEnemyData = enemys[randomIndex];
       const newEnemy = EnemyFactory.createFromData(randomEnemyData);
       enemies.push(newEnemy);
     }
+
     return enemies;
   }
 
-  /**
-   * Gera um inimigo com base em um id.
-   * @param id O id do inimigo (definido no JSON).
-   * @returns Uma instância do Enemy ou null se não for encontrado.
-   */
   public createEnemyById(id: string): Enemy | null {
     const enemyData = this.enemyTemplates.find((e) => e.id === id);
     if (enemyData) {
       return EnemyFactory.createFromData(enemyData);
     }
     return null;
+  }
+
+  public createBossEnemy(): Boss[] {
+    const bossData: EnemyData[] = this.enemyTemplates.filter(
+      (enemy) => enemy.isBoss
+    );
+
+    const bossEnemies: Boss[] = [];
+
+    if (bossData.length > 0) {
+      for (const boss of bossData) {
+        const newBossEnemy = BossFactory.createFromData(boss);
+        bossEnemies.push(newBossEnemy);
+      }
+
+      return bossEnemies;
+    }
+
+    throw new Error("No boss enemy found in the database.");
   }
 }

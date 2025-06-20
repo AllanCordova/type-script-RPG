@@ -1,23 +1,47 @@
 [
   {
-    "id": "goblin",
-    "name": "Goblin Ladrão",
-    "hp": 30,
-    "attack": 8,
-    "defense": 4
+    "id": "skeleton",
+    "name": "Esqueleto Guerreiro",
+    "hp": 40,
+    "attack": 10,
+    "defense": 5,
+    "isBoss": false,
+    "artPath": "assets/skeleton.txt"
   },
   {
-    "id": "orc",
-    "name": "Orc Brutamontes",
-    "hp": 80,
-    "attack": 18,
-    "defense": 8
+    "id": "troll",
+    "name": "Troll das Cavernas",
+    "hp": 120,
+    "attack": 22,
+    "defense": 10,
+    "isBoss": false,
+    "artPath": "assets/troll.txt"
   },
   {
-    "id": "slime",
-    "name": "Slime Ácido",
-    "hp": 20,
-    "attack": 12,
-    "defense": 2
+    "id": "dark_wizard",
+    "name": "Mago Sombrio",
+    "hp": 60,
+    "attack": 25,
+    "defense": 6,
+    "isBoss": false,
+    "artPath": "assets/darkWizard.txt"
+  },
+  {
+    "id": "dragon",
+    "name": "Dragão Ancião",
+    "hp": 300,
+    "attack": 40,
+    "defense": 20,
+    "isBoss": true,
+    "artPath": "assets/dragon.txt"
+  },
+  {
+    "id": "demon_lord",
+    "name": "Lorde Demônio",
+    "hp": 500,
+    "attack": 55,
+    "defense": 30,
+    "isBoss": true,
+    "artPath": "assets/boss.txt"
   }
 ]

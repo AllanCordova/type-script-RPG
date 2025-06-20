@@ -7,8 +7,15 @@ export default abstract class Persons {
   protected _maxHp: number;
   protected _attack: number;
   protected _defense: number;
+  protected _artPath: string;
 
-  constructor(name: string, hp: number, attack: number, defense: number) {
+  constructor(
+    name: string,
+    hp: number,
+    attack: number,
+    defense: number,
+    artPath: string
+  ) {
     if (hp <= 0 || attack <= 0 || defense < 0) {
       throw new InvalidStatError("Stats must be positive values.");
     }
@@ -18,6 +25,7 @@ export default abstract class Persons {
     this._hp = hp;
     this._attack = attack;
     this._defense = defense;
+    this._artPath = artPath;
   }
 
   public get name(): string {
@@ -44,25 +52,19 @@ export default abstract class Persons {
     return this._hp > 0;
   }
 
-  /**
-   * Ataca um alvo. A lógica do dano é calculada aqui.
-   * @param target O Persons que será atacado.
-   */
-  public attack(target: Persons): void {
+  public get artPath(): string {
+    return this._artPath;
+  }
+
+  public takeAttack(target: Persons): void {
     if (!target.isAlive) {
-      throw new TargetDefeatedError(target.name);
-      return;
+      throw new TargetDefeatedError(target._name);
     }
 
-    // Fórmula de dano simples: Ataque do atacante - Defesa do alvo
     const damage = Math.max(1, this._attack - target.defenseValue);
     target.takeDamage(damage);
   }
 
-  /**
-   * Reduz o HP da pessoa baseado no dano recebido.
-   * @param amount A quantidade de dano.
-   */
   public takeDamage(amount: number): void {
     this._hp -= amount;
     if (this._hp < 0) {
@@ -73,10 +75,6 @@ export default abstract class Persons {
     }
   }
 
-  /**
-   * Cura a pessoa, restaurando HP.
-   * @param amount A quantidade de HP a ser restaurada.
-   */
   public heal(amount: number): void {
     this._hp += amount;
     if (this._hp > this._maxHp) {

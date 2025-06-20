@@ -2,8 +2,14 @@ import Persons from "./Persons";
 import { TargetDefeatedError } from "../errors/TargetDefeatedError";
 
 export class Boss extends Persons {
-  constructor(name: string, hp: number, attack: number, defense: number) {
-    super(name, hp, attack, defense);
+  constructor(
+    name: string,
+    hp: number,
+    attack: number,
+    defense: number,
+    artPath: string
+  ) {
+    super(name, hp, attack, defense, artPath);
   }
 
   public specialAttack(target: Persons): void {

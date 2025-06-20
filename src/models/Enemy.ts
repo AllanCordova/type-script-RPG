@@ -1,9 +1,13 @@
 import Persons from "./Persons";
 
 export class Enemy extends Persons {
-  constructor(name: string, hp: number, attack: number, defense: number) {
-    super(name, hp, attack, defense);
+  constructor(
+    name: string,
+    hp: number,
+    attack: number,
+    defense: number,
+    artPath: string
+  ) {
+    super(name, hp, attack, defense, artPath);
   }
-
-  // Inimigos podem ter comportamentos específicos no futuro
 }

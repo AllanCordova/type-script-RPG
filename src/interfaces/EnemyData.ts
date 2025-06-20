@@ -4,4 +4,6 @@ export interface EnemyData {
   hp: number;
   attack: number;
   defense: number;
+  isBoss: boolean;
+  artPath: string;
 }
