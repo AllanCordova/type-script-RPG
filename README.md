@@ -37,7 +37,7 @@ Além de ser um jogo divertido, este projeto foi desenvolvido como um laboratór
 1. **Clone o repositório:**
 
    ```bash
-   git clone https://github.com/seu-usuario/rpg-turno.git
+   git clone https://github.com/allancordova/type-script-RPG.git
 
 2. **Faça Chekout:**
 
