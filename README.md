@@ -38,23 +38,18 @@ Além de ser um jogo divertido, este projeto foi desenvolvido como um laboratór
 
    ```bash
    git clone https://github.com/allancordova/type-script-RPG.git
-
-2. **Faça Chekout:**
-
-   ```bash
-   git checkout master
    
-3. **Instale as dependências:**
+2. **Instale as dependências:**
 
    ```bash
     npm install
 
-4. **Compile o TypeScript::**
+3. **Compile o TypeScript::**
 
    ```bash
    tsc
 
-5. **rode o jogo::**
+4. **rode o jogo::**
 
    ```bash
     node ./dist/
